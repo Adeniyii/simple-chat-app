@@ -1,30 +1,13 @@
-import fs from "fs/promises";
-import mime from "mime";
-import http from "http";
-import path from "path";
+import * as fs from "fs/promises";
+import * as mime from "mime";
+import * as http from "http";
+import * as path from "path";
 
 export interface Map {
   [key: string]: Buffer;
 }
 
-function send404(response: http.ServerResponse, message: string) {
-  response.writeHead(404, { "Content-Type": "text/plain" });
-  response.write(message);
-  response.end();
-}
-
-function sendFile(
-  response: http.ServerResponse,
-  filePath: string,
-  fileContent: Buffer
-) {
-  response.writeHead(200, {
-    "Content-Type": mime.getType(path.basename(filePath)) as string,
-  });
-  response.end(fileContent);
-}
-
-export const serveStatic = async function (
+export async function serveStatic(
   response: http.ServerResponse,
   cache: Map,
   absPath: string
@@ -41,4 +24,21 @@ export const serveStatic = async function (
   } catch (error) {
     send404(response, error.message);
   }
-};
+}
+
+function sendFile(
+  response: http.ServerResponse,
+  filePath: string,
+  fileContent: Buffer
+) {
+  response.writeHead(200, {
+    "Content-Type": mime.getType(path.basename(filePath)) as string,
+  });
+  response.end(fileContent);
+}
+
+function send404(response: http.ServerResponse, message: string) {
+  response.writeHead(404, { "Content-Type": "text/plain" });
+  response.write(message.split(",")[0]);
+  response.end();
+}

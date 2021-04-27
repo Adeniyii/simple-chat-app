@@ -8,7 +8,7 @@
     "@types/node": "^15.0.0"
   },
   "scripts": {
-    "start": "nodemon dist",
+    "start": "nodemon dist/server.js",
     "dev": "tsc -w"
   },
   "dependencies": {
