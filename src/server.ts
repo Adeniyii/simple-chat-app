@@ -14,7 +14,6 @@ const server = http.createServer((req, res) => {
   }
 
   let absPath = path.resolve(__dirname, filePath);
-  console.log(absPath);
 
   serveStatic(res, cache, absPath);
 });

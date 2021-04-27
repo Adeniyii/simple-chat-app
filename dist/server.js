@@ -32,7 +32,6 @@ const server = http.createServer((req, res) => {
         filePath = "public" + req.url;
     }
     let absPath = path.resolve(__dirname, filePath);
-    console.log(absPath);
     helpers_1.serveStatic(res, cache, absPath);
 });
 server.listen(3000, () => console.log("Listening on port 3000..."));
