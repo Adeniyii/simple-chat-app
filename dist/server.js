@@ -26,10 +26,10 @@ let cache = {};
 const server = http.createServer((req, res) => {
     let filePath;
     if (req.url === "/") {
-        filePath = "public/index.html";
+        filePath = "../public/index.html";
     }
     else {
-        filePath = "public" + req.url;
+        filePath = "../public/tailwind.html";
     }
     let absPath = path.resolve(__dirname, filePath);
     helpers_1.serveStatic(res, cache, absPath);

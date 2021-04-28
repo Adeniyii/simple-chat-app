@@ -8,9 +8,10 @@ const server = http.createServer((req, res) => {
   let filePath: string;
 
   if (req.url === "/") {
-    filePath = "public/index.html";
+    filePath = "../public/index.html";
   } else {
-    filePath = "public" + req.url!;
+    // filePath = "../public" + req.url!;
+    filePath = "../public/tailwind.html";
   }
 
   let absPath = path.resolve(__dirname, filePath);
